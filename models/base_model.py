@@ -3,6 +3,7 @@
 
 import uuid
 from datetime import datetime
+from models import storage
 
 
 class BaseModel:
@@ -14,14 +15,12 @@ class BaseModel:
         if kwargs:
             # Iterate through the key-value pairs in kwargs
             for key, value in kwargs.items():
-                # Exclude the __class__ key
-                if key != '__class__':
-                    setattr(self, key, value)
+                setattr(self, key, value)
 
-                    # Convert created_at and updatated_at strs to datetime objs
-                    if key == 'created_at' or key == 'updated_at':
-                        setattr(self, key, datetime.strptime(
-                            value, '%Y-%m-%dT%H:%M:%S.%f'))
+                # Convert created_at and updatated_at strs to datetime objs
+                if key == 'created_at' or key == 'updated_at':
+                    setattr(self, key, datetime.strptime(
+                        value, '%Y-%m-%dT%H:%M:%S.%f'))
 
         else:
             # Generate a unique ID for the instance
@@ -32,9 +31,12 @@ class BaseModel:
             self.created_at = current_time
             self.updated_at = current_time
 
+            storage.new(self)
+
     def save(self):
         """Update the updated_at attribute to the current datetime"""
         self.updated_at = datetime.utcnow()
+        storage.save()
 
     def to_dict(self):
         """Converts created_at and updated_at to str objects in ISO format"""
