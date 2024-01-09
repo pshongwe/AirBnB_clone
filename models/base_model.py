@@ -11,13 +11,13 @@ class BaseModel:
         """Initialization of the class"""
         self.id = str(uuid.uuid4())
 
-        current_time = datetime.now()
+        current_time = datetime.utcnow()
         self.created_at = current_time
         self.updated_at = current_time
 
     def save(self):
         """Update the updated_at attribute to the current datetime"""
-        self.updated_at = datetime.now
+        self.updated_at = datetime.utcnow()
 
     def to_dict(self):
         """Creates a dictionary containing only instance att that have been set"""
