@@ -26,17 +26,18 @@ class FileStorage:
         seria_objs = {
                 key: value.to_dict() for key, value in self.__objects.items()
                 }
-        with open(self.__file.path, 'w') as f:
+        with open(self.__file_path, 'w') as f:
             json.dump(seria_objs, f)
 
     def reload(self):
         """Deserializes the JSON file to __objects if exists otherwise no"""
-        if os.path.exists(self.__file_path, 'r') as f:
-            data = json.load(f)
+        if os.path.exists(self.__file_path):
+            with open(self.__file_path, 'r') as f:
+                data = json.load(f)
 
-            for key, value in data.items():
-                class_name, obj_id = key.split('.')
-                module = __import__(class_name)
-                myclass = getattr(module, class_name)
-                obj = myclass(**value)
-                self.__object[key] = obj
+                for key, value in data.items():
+                    class_name, obj_id = key.split('.')
+                    module = __import__(class_name)
+                    myclass = getattr(module, class_name)
+                    obj = myclass(**value)
+                    self.__object[key] = obj
