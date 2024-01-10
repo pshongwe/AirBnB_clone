@@ -6,6 +6,8 @@ from datetime import datetime
 import models
 
 
+Base = object
+
 class BaseModel:
     """A Base class with all public instances"""
     def __init__(self, *args, **kwargs):
