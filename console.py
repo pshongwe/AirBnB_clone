@@ -10,7 +10,33 @@ classes = {"BaseModel": BaseModel}
 class HBNBCommand(cmd.Cmd):
     """ console class """
     prompt = '(hbnb) '
-    
+   
+    def do_destroy(self, args):
+        """Deletes instance based on class and id"""
+        _args = args.split()
+
+        if not _args:
+            print("** class name missing **")
+            return
+
+        class_name = _args[0]
+
+        if class_name not in classes:
+            print("** class doesn't exist **")
+            return
+        if len(_args) < 2:
+            print("** instance id missing **")
+            return
+
+        instance_id = class_name + "." + _args[1]
+
+        instances = models.storage.all()
+        if instance_id in instances:
+            instances[instance_id].delete()
+            models.storage.save()
+        else:
+            print("** no instance found **")
+
     def do_show(self, args):
         """Prints instance as string based on the class and id"""
         _args = args.split()
