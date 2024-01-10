@@ -42,3 +42,9 @@ class FileStorage:
                     myclass = getattr(module, class_name)
                     obj = myclass(**value)
                     self.__object[key] = obj
+
+    def delete(self, obj=None):
+        """deletes object if present"""
+        if obj is not None:
+            del self.__objects[obj.__class__.__name__ + '.' + obj.id]
+            self.save()

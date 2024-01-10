@@ -57,3 +57,7 @@ class BaseModel:
     def __str__(self):
         """return the string representation of the object"""
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+
+    def delete(self):
+        """deletes instance"""
+        models.storage.delete(self)

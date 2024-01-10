@@ -11,6 +11,46 @@ class HBNBCommand(cmd.Cmd):
     """ console class """
     prompt = '(hbnb) '
    
+    def do_update(self, args):
+        """Update instance based on relevant args"""
+        _args = args.split()
+
+        if not _args:
+            print("** class name missing **")
+            return
+
+        class_name = _args[0]
+
+        if class_name not in classes:
+            print("** class doesn't exist **")
+            return
+
+        if len(_args) < 2:
+            print("** instance id missing **")
+            return
+
+        instance_id = class_name + "." + _args[1]
+        instances = models.storage.all()
+
+        if instance_id not in instances:
+            print("** no instance found **")
+            return
+
+        if len(_args) < 3:
+            print("** attribute name missing **")
+            return
+
+        attribute_name = _args[2]
+
+        if len(_args) < 4:
+            print("** value missing **")
+            return
+
+        new_value = _args[3]
+
+        setattr(instances[instance_id], attribute_name, new_value)
+        instances[instance_id].save()
+
     def do_destroy(self, args):
         """Deletes instance based on class and id"""
         _args = args.split()
