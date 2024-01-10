@@ -9,8 +9,33 @@ classes = {"BaseModel": BaseModel}
 
 class HBNBCommand(cmd.Cmd):
     """ console class """
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
+    
+    def do_show(self, args):
+        """Prints instance as string based on the class and id"""
+        _args = args.split()
 
+        if not _args:
+            print("** class name missing **")
+            return
+
+        class_name = _args[0]
+    
+        if class_name not in classes:
+            print("** class doesn't exist **")
+            return
+
+        if len(_args) < 2:
+            print("** instance id missing **")
+            return
+
+        instance_id = class_name + "." + _args[1]
+
+        if instance_id in models.storage.all():
+            print(models.storage.all()[instance_id])
+        else:
+            print("** no instance found **")
+        
     def do_create(self, args):
         """Creates new instance of class"""
         _args = args.split()
