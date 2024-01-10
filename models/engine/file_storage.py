@@ -11,7 +11,7 @@ classes = {"BaseModel": BaseModel, "User": User}
 class FileStorage:
     """class that uses private class attributes below"""
 
-    __file_path = "myfile"
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -31,18 +31,21 @@ class FileStorage:
         with open(self.__file_path, 'w') as f:
             json.dump(seria_objs, f)
 
+    def reload_helper(self, data, key):
+        """ reload helper """
+        return classes[data[key]["__class__"]](**data[key])
+
     def reload(self):
         """Deserializes the JSON file to __objects if exists otherwise no"""
         if os.path.exists(self.__file_path):
-            with open(self.__file_path, 'r') as f:
-                data = json.load(f)
+            try:
+                with open(self.__file_path, 'r') as f:
+                    data = json.load(f)
 
-                for key, value in data.items():
-                    class_name, obj_id = key.split('.')
-                    module = __import__(class_name)
-                    myclass = getattr(module, class_name)
-                    obj = myclass(**value)
-                    self.__object[key] = obj
+                    for key in data:
+                        self.__objects[key] = self.reload_helper(data, key)
+            except:
+                pass
 
     def delete(self, obj=None):
         """deletes object if present"""
