@@ -3,8 +3,7 @@
 
 import uuid
 from datetime import datetime
-from models import storage
-
+import models
 
 class BaseModel:
     """A Base class with all public instances"""
@@ -31,12 +30,12 @@ class BaseModel:
             self.created_at = current_time
             self.updated_at = current_time
 
-            storage.new(self)
+            models.storage.new(self)
 
     def save(self):
         """Update the updated_at attribute to the current datetime"""
         self.updated_at = datetime.utcnow()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """Converts created_at and updated_at to str objects in ISO format"""

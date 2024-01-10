@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 """Module that defines FileStorage class"""
-
-
 import json
 import os
+from models.base_model import BaseModel
+
+classes = {"BaseModel": BaseModel}
 
 
 class FileStorage:
