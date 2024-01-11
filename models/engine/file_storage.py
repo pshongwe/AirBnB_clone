@@ -5,7 +5,12 @@ import os
 from models.base_model import BaseModel
 from models.user import User
 
-classes = {"BaseModel": BaseModel, "User": User}
+classes = {
+        "BaseModel": BaseModel, "User": User,
+        "Place": Place, "State": State,
+        "City": City, "Amenity": Amenity,
+        "Review": Review
+        }
 
 
 class FileStorage:
@@ -44,7 +49,7 @@ class FileStorage:
 
                     for key in data:
                         self.__objects[key] = self.reload_helper(data, key)
-            except:
+            except Exception:
                 pass
 
     def get_object_by_id(self, class_name, instance_id):
