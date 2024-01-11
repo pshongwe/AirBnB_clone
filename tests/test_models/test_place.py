@@ -13,7 +13,7 @@ class TestPlace(unittest.TestCase):
         self.models_storage = storage.all()
 
     def tearDown(self):
-        storage.delete_all()
+        storage.delete()
 
     def test_place_attributes(self):
         self.assertTrue(hasattr(self.place, 'city_id'))
