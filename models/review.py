@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 """Module that defines class Review"""
+from models.base_model import BaseModel, Base
 
 
-from base_model import BaseModel
-
-
-class Review(BaseModel):
+class Review(BaseModel, Base):
     """Review class that inherits from BaseModel"""
     def __init__(self, *args, **kwargs):
         """Initialization method for Review"""

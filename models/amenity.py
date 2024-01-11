@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 """Module that defines class Amenity"""
+from models.base_model import BaseModel, Base
 
 
-from base_model import BaseModel
-
-
-class Amenity(BaseModel):
+class Amenity(BaseModel, Base):
     """Amenity class that inherits from BaseModel"""
     def __init__(self, *args, **kwargs):
         """Initialization method for Amenity"""
