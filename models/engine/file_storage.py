@@ -47,6 +47,19 @@ class FileStorage:
             except:
                 pass
 
+    def get_object_by_id(self, class_name, instance_id):
+        """
+        Retrieve an object by class name and instance ID from the storage.
+        Args:
+            class_name (str): The name of the class.
+            instance_id (str): The instance ID.
+        Returns:
+            object or None: The object if found, or None if not found.
+        """
+        all_objects = self.all()
+        key = "{}.{}".format(class_name, instance_id)
+        return all_objects.get(key)
+
     def delete(self, obj=None):
         """deletes object if present"""
         if obj is not None:
