@@ -32,7 +32,7 @@ class TestConsole(unittest.TestCase):
             self.cmd.onecmd("create BaseModel")
             output = mock_stdout.getvalue().strip()
             self.assertTrue(len(output) > 0)
-            #self.assertIsInstance(self.models_storage.get(0), BaseModel)
+            # self.assertIsInstance(self.models_storage.get(0), BaseModel)
 
     def test_create_command_nonexistent_class(self):
         """ test create invalid class """
@@ -94,7 +94,7 @@ class TestConsole(unittest.TestCase):
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             self.cmd.onecmd("update BaseModel {} {} '{}'".format(self.base.id, attribute_name, new_value))
             output = mock_stdout.getvalue().strip()
-        
+
         updated_instance = self.models_storage.get(instance_id)
         self.assertEqual(getattr(updated_instance, attribute_name).strip("'").lower(), new_value.strip("'").lower())
 

@@ -5,13 +5,18 @@ import models
 from models.base_model import BaseModel
 from models.user import User
 
-classes = {"BaseModel": BaseModel, "User": User}
+classes = {
+        "BaseModel": BaseModel, "User": User,
+        "Place": Place, "State": State,
+        "City": City, "Amenity": Amenity,
+        "Review": Review,
+        }
 
 
 class HBNBCommand(cmd.Cmd):
     """ console class """
     prompt = '(hbnb) '
-   
+
     def do_update(self, args):
         """Update instance based on relevant args"""
         _args = args.split()
@@ -87,7 +92,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = _args[0]
-    
+
         if class_name not in classes:
             print("** class doesn't exist **")
             return
@@ -102,7 +107,7 @@ class HBNBCommand(cmd.Cmd):
             print(models.storage.all()[instance_id])
         else:
             print("** no instance found **")
-        
+
     def do_create(self, args):
         """Creates new instance of class"""
         _args = args.split()
