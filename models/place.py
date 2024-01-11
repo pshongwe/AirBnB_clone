@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Module that defines class Place"""
-from models.base_model import BaseModel, Base
+from models.base_model import BaseModel
 
 
-class Place(BaseModel, Base):
+class Place(BaseModel):
     """Place class that inherits from BaseModel"""
     def __init__(self, *args, **kwargs):
         """Initialization method for Place."""

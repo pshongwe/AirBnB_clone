@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Module that defines class city"""
-from models.base_model import BaseModel, Base
+from models.base_model import BaseModel
 
 
-class City(BaseModel, Base):
+class City(BaseModel):
     """City class that inherits from BaseModel"""
     def __init__(self, *args, **kwargs):
         """initialization method for city"""
