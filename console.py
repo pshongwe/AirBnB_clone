@@ -16,6 +16,7 @@ classes = {
         "City": City, "Amenity": Amenity,
         "Review": Review,
         }
+# TODO: add comments under every class and function
 
 
 class HBNBCommand(cmd.Cmd):
