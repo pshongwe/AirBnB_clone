@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" amenity unit tests """
 import unittest
 from unittest.mock import patch
 from io import StringIO
@@ -11,22 +12,27 @@ from models.base_model import BaseModel
 class TestAmenity(unittest.TestCase):
     """ amenity class unit tests class """
     def setUp(self):
+        """setup"""
         self.amenity = Amenity()
         self.models_storage = storage.all()
 
     def tearDown(self):
+        """teardown"""
         storage.delete(self.amenity)
 
     def test_amenity_attributes(self):
+        """Test attributes"""
         self.assertTrue(hasattr(self.amenity, 'name'))
 
     def test_amenity_creation(self):
+        """Test create"""
         self.assertIsInstance(self.amenity, Amenity)
         self.assertTrue(self.amenity.id)
         self.assertTrue(self.amenity.created_at)
         self.assertTrue(self.amenity.updated_at)
 
     def test_str_representation(self):
+        """Test string representation"""
         expected_str = "[Amenity] ({}) {}".format(self.amenity.id, self.amenity.__dict__)
         self.assertEqual(str(self.amenity), expected_str)
 
