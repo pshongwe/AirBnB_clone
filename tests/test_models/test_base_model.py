@@ -17,6 +17,8 @@ class TestBaseModel(unittest.TestCase):
         """Initialize variables"""
         self.cmd = HBNBCommand()
         self.base = BaseModel()
+        self.base_model1 = BaseModel()
+        self.base_model2 = BaseModel()
         self.user = User()
         self.models_storage = storage.all()
         self.output = StringIO()
@@ -25,6 +27,15 @@ class TestBaseModel(unittest.TestCase):
         """Reset file storage data"""
         storage.delete()
         self.output.close()
+
+    def test_uuid(self):
+        """Test uniqueness of uuids"""
+        uuid1 = self.base_model1.id
+        self.assertIsInstance(uuid1, str)
+
+        uuid2 = self.base_model2.id
+        self.assertIsInstance(uuid2, str)
+        self.assertNotEqual(uuid1, uuid2)
 
     def test_create_command(self):
         """Test create success"""
