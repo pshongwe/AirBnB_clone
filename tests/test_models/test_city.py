@@ -33,6 +33,40 @@ class TestCity(unittest.TestCase):
         """Test the string representation of a City instance"""
         expected_str = "[City] ({}) {}".format(self.city.id, self.city.__dict__)
         self.assertEqual(str(self.city), expected_str)
+    
+    def test_state_id_attribute_type(self):
+        """Test if the 'state_id' attribute is a string"""
+        self.assertIsInstance(self.city.state_id, str)
+
+    def test_name_attribute_type(self):
+        """Test if the 'name' attribute is a string"""
+        self.assertIsInstance(self.city.name, str)
+
+    def test_state_id_initial_value(self):
+        """Test the initial value of the 'state_id' attribute"""
+        self.assertEqual(self.city.state_id, "")
+
+    def test_name_initial_value(self):
+        """Test the initial value of the 'name' attribute"""
+        self.assertEqual(self.city.name, "")
+
+    def test_update_state_id_attribute(self):
+        """Test updating the 'state_id' attribute"""
+        new_state_id = "NewStateID"
+        self.city.state_id = new_state_id
+        self.assertEqual(self.city.state_id, new_state_id)
+
+    def test_update_name_attribute(self):
+        """Test updating the 'name' attribute"""
+        new_name = "New City Name"
+        self.city.name = new_name
+        self.assertEqual(self.city.name, new_name)
+
+    def test_name_attribute_with_spaces(self):
+        """Test setting the 'name' attribute with spaces"""
+        name_with_spaces = "City with Spaces"
+        self.city.name = name_with_spaces
+        self.assertEqual(self.city.name, name_with_spaces)
 
 
 if __name__ == '__main__':

@@ -30,6 +30,26 @@ class TestAmenity(unittest.TestCase):
         expected_str = "[Amenity] ({}) {}".format(self.amenity.id, self.amenity.__dict__)
         self.assertEqual(str(self.amenity), expected_str)
 
+    def test_name_attribute_type(self):
+        """Test if the 'name' attribute is a string"""
+        self.assertIsInstance(self.amenity.name, str)
+
+    def test_name_initial_value(self):
+        """Test the initial value of the 'name' attribute"""
+        self.assertEqual(self.amenity.name, "")
+
+    def test_update_name_attribute(self):
+        """Test updating the 'name' attribute"""
+        new_name = "New Amenity Name"
+        self.amenity.name = new_name
+        self.assertEqual(self.amenity.name, new_name)
+
+    def test_name_attribute_with_spaces(self):
+        """Test setting the 'name' attribute with spaces"""
+        name_with_spaces = "Amenity with Spaces"
+        self.amenity.name = name_with_spaces
+        self.assertEqual(self.amenity.name, name_with_spaces)
+
 
 if __name__ == '__main__':
     unittest.main()
