@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+""" Place unit tests """
 import unittest
 from unittest.mock import patch
 from io import StringIO
@@ -7,15 +9,18 @@ from models.place import Place
 from models.base_model import BaseModel
 
 class TestPlace(unittest.TestCase):
-    """ place classs unit tests class """
+    """ place class unit tests class """
     def setUp(self):
+         """ setup"""
         self.place = Place()
         self.models_storage = storage.all()
 
     def tearDown(self):
+         """ teardown """
         storage.delete()
 
     def test_place_attributes(self):
+         """Test attributes"""
         self.assertTrue(hasattr(self.place, 'city_id'))
         self.assertTrue(hasattr(self.place, 'user_id'))
         self.assertTrue(hasattr(self.place, 'name'))
@@ -29,12 +34,14 @@ class TestPlace(unittest.TestCase):
         self.assertTrue(hasattr(self.place, 'amenity_ids'))
 
     def test_place_creation(self):
+         """Test create"""
         self.assertIsInstance(self.place, Place)
         self.assertTrue(self.place.id)
         self.assertTrue(self.place.created_at)
         self.assertTrue(self.place.updated_at)
 
     def test_str_representation(self):
+         """Test string representation"""
         expected_str = "[Place] ({}) {}".format(self.place.id, self.place.__dict__)
         self.assertEqual(str(self.place), expected_str)
     
