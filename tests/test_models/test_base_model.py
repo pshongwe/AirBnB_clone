@@ -14,7 +14,7 @@ from models.user import User
 class TestBaseModel(unittest.TestCase):
     """ console unit tests class """
     def setUp(self):
-        """ initialize vars """
+        """Initialize variables"""
         self.cmd = HBNBCommand()
         self.base = BaseModel()
         self.user = User()
@@ -22,12 +22,12 @@ class TestBaseModel(unittest.TestCase):
         self.output = StringIO()
 
     def tearDown(self):
-        """ reset file storage data """
+        """Reset file storage data"""
         storage.delete()
         self.output.close()
 
     def test_create_command(self):
-        """ test create success """
+        """Test create success"""
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             self.cmd.onecmd("create BaseModel")
             output = mock_stdout.getvalue().strip()
@@ -35,35 +35,35 @@ class TestBaseModel(unittest.TestCase):
             # self.assertIsInstance(self.models_storage.get(0), BaseModel)
 
     def test_create_command_nonexistent_class(self):
-        """ test create invalid class """
+        """Test create invalid class"""
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             self.cmd.onecmd("create NonExistentClass")
             output = mock_stdout.getvalue().strip()
             self.assertEqual(output, "** class doesn't exist **")
 
     def test_show_command(self):
-        """ test show command success """
+        """Test show command success"""
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             self.cmd.onecmd("show BaseModel {}".format(self.base.id))
             output = mock_stdout.getvalue().strip()
             self.assertIn(str(self.base), output)
 
     def test_show_command_nonexistent_class(self):
-        """ test show invalid class """
+        """Test show invalid class"""
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             self.cmd.onecmd("show NonExistentClass {}".format(self.base.id))
             output = mock_stdout.getvalue().strip()
             self.assertEqual(output, "** class doesn't exist **")
 
     def test_show_command_nonexistent_instance(self):
-        """ test show invalid instance """
+        """Test show invalid instance"""
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             self.cmd.onecmd("show BaseModel NonExistentInstanceID")
             output = mock_stdout.getvalue().strip()
             self.assertEqual(output, "** no instance found **")
 
     def test_destroy_command(self):
-        """  test destroy success """
+        """Test destroy success"""
         instance_id = "{}.{}".format(self.base.__class__.__name__, self.base.id)
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             self.cmd.onecmd("destroy BaseModel {}".format(self.base.id))
@@ -72,20 +72,21 @@ class TestBaseModel(unittest.TestCase):
             self.assertEqual(output, "")
 
     def test_destroy_command_nonexistent_class(self):
-        """ test destroy invalid class """
+        """Test destroy invalid class"""
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             self.cmd.onecmd("destroy NonExistentClass {}".format(self.base.id))
             output = mock_stdout.getvalue().strip()
             self.assertEqual(output, "** class doesn't exist **")
 
     def test_destroy_command_nonexistent_instance(self):
-        """ test destroy invalid instance """
+        """Test destroy invalid instance"""
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             self.cmd.onecmd("destroy BaseModel NonExistentInstanceID")
             output = mock_stdout.getvalue().strip()
             self.assertEqual(output, "** no instance found **")
 
     def test_update_command(self):
+        """Test update"""
         instance_id = "{}.{}".format(self.base.__class__.__name__, self.base.id)
         attribute_name = "name"
         new_value = 'Updated'
