@@ -93,12 +93,17 @@ class TestBaseModel(unittest.TestCase):
 
         self.cmd.onecmd("create BaseModel")
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-            self.cmd.onecmd("update BaseModel {} {} '{}'".format(self.base.id, attribute_name, new_value))
+            self.cmd.onecmd(f"update BaseModel {self.base.id} {attribute_name} '{new_value}'")
             output = mock_stdout.getvalue().strip()
 
         updated_instance = self.models_storage.get(instance_id)
-        self.assertEqual(getattr(updated_instance, attribute_name).strip("'").lower(), new_value.strip("'").lower())
-
+        A = getattr(updated_instance, attribute_name).strip("'").lower()
+        B = new_value.strip("'").lower()
+        self.assertEqual(A, B)
+    
+    def test_EOF(self):
+        result = self.cmd.do_EOF(None)
+        self.assertTrue(result)
 
 if __name__ == '__main__':
     unittest.main()
