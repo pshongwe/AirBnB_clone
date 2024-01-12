@@ -102,6 +102,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(A, B)
     
     def test_EOF(self):
+        """Test EOF"""
         result = self.cmd.do_EOF(None)
         self.assertTrue(result)
 
