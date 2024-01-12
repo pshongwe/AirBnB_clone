@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" City unit tests """
 import unittest
 from unittest.mock import patch
 from io import StringIO
@@ -9,12 +10,14 @@ from models.base_model import BaseModel
 
 
 class TestCity(unittest.TestCase):
-
+    """ city unit tests """
     def setUp(self):
+        """ setup """
         self.city = City()
         self.models_storage = storage.all()
 
     def tearDown(self):
+        """ teardown """
         storage.delete(self.city)
 
     def test_city_attributes(self):
