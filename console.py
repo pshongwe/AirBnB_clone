@@ -144,15 +144,18 @@ class HBNBCommand(cmd.Cmd):
             objects = models.storage.all()
         elif _args[0] in classes:
             class_name = _args[0]
-            objects = models.storage.all()
-            filtered_objects = self.my_filter(objects, class_name)
-            objects = filtered_objects
+            cls = classes[class_name]
+            if hasattr(cls, 'all') and callable(getattr(cls, 'all')):
+                objects = cls.all()
+            else:
+                objects = models.storage.all().values()
+                objects = [obj for obj in objects if isinstance(obj, cls)]
         else:
             print("** class doesn't exist **")
             return False
 
         print("[", end="")
-        print(", ".join(str(obj) for obj in objects.values()), end="")
+        print(", ".join(str(obj) for obj in objects), end="")
         print("]")
 
     def _parse_dict(self, args):
