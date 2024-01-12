@@ -16,11 +16,11 @@ class TestPlace(unittest.TestCase):
         self.models_storage = storage.all()
 
     def tearDown(self):
-         """ teardown """
+        """ teardown """
         storage.delete()
 
     def test_place_attributes(self):
-         """Test attributes"""
+        """Test attributes"""
         self.assertTrue(hasattr(self.place, 'city_id'))
         self.assertTrue(hasattr(self.place, 'user_id'))
         self.assertTrue(hasattr(self.place, 'name'))
@@ -34,14 +34,14 @@ class TestPlace(unittest.TestCase):
         self.assertTrue(hasattr(self.place, 'amenity_ids'))
 
     def test_place_creation(self):
-         """Test create"""
+        """Test create"""
         self.assertIsInstance(self.place, Place)
         self.assertTrue(self.place.id)
         self.assertTrue(self.place.created_at)
         self.assertTrue(self.place.updated_at)
 
     def test_str_representation(self):
-         """Test string representation"""
+        """Test string representation"""
         expected_str = "[Place] ({}) {}".format(self.place.id, self.place.__dict__)
         self.assertEqual(str(self.place), expected_str)
     
