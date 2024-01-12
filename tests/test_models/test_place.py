@@ -11,7 +11,7 @@ from models.base_model import BaseModel
 class TestPlace(unittest.TestCase):
     """ place class unit tests class """
     def setUp(self):
-         """ setup"""
+        """setup"""
         self.place = Place()
         self.models_storage = storage.all()
 
