@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" State unit tests """
 import unittest
 from unittest.mock import patch
 from io import StringIO
@@ -11,10 +12,12 @@ from models.base_model import BaseModel
 class TestState(unittest.TestCase):
     """ state class unit tests class """
     def setUp(self):
+        """Setup"""
         self.state = State()
         self.models_storage = storage.all()
 
     def tearDown(self):
+        """Teardown"""
         storage.delete(self.state)
 
     def test_state_attributes(self):
