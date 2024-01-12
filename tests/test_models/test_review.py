@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" Review unit tests """
 import unittest
 from unittest.mock import patch
 from io import StringIO
@@ -11,10 +12,12 @@ from models.base_model import BaseModel
 class TestReview(unittest.TestCase):
     """ review class unit tests class """
     def setUp(self):
+        """Setup"""
         self.review = Review()
         self.models_storage = storage.all()
 
     def tearDown(self):
+        """Teardown"""
         storage.delete(self.review)
 
     def test_review_attributes(self):
