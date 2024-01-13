@@ -21,7 +21,7 @@ classes = {
 class FileStorage:
     """class that uses private class attributes below"""
 
-    __file_path = "file.json"
+    __file_path = "/path/to/file.json"
     __objects = {}
 
     def all(self):

@@ -38,6 +38,9 @@ class BaseModel:
         self.updated_at = datetime.utcnow()
         models.storage.save()
 
+        if not hasattr(self, '__dict__'):
+            storage.new(self)
+
     def to_dict(self):
         """Converts created_at and updated_at to str objects in ISO format"""
         c_at_string = self.created_at.strftime('%Y-%m-%dT%H:%M:%S.%f')
