@@ -14,9 +14,10 @@ class BaseModel:
         if kwargs:
             # Iterate through the key-value pairs in kwargs
             for key, value in kwargs.items():
+                if key == '__class__':
+                    continue
                 setattr(self, key, value)
 
-                # Convert created_at and updatated_at strs to datetime objs
                 if key == 'created_at' or key == 'updated_at':
                     setattr(self, key, datetime.strptime(
                         value, '%Y-%m-%dT%H:%M:%S.%f'))
