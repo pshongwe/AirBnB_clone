@@ -55,7 +55,7 @@ class FileStorage:
                     for key in data:
                         self.__objects[key] = self.reload_helper(data, key)
             except Exception:
-                pass
+                return
 
     def get_object_by_id(self, class_name, instance_id):
         """
