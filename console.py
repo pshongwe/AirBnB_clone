@@ -23,6 +23,25 @@ classes = {
 class HBNBCommand(cmd.Cmd):
     """ console class """
     prompt = '(hbnb) '
+    
+    def default(self, arg):
+        """Default behavior on invalid input"""
+        argdict = {
+            "all": self.do_all,
+            "show": self.do_show,
+            "destroy": self.do_destroy,
+            "count": self.do_count,
+            "update": self.do_update
+        }
+
+        match = re.match(r'(\w+)\((.*?)\)', arg)
+        if match:
+            command, params = match.groups()
+            if command in argdict:
+                return argdict[command](params)
+
+        print(f"*** Unknown syntax: {arg}")
+        return False
 
     def parse_arg(arg):
         """Handles user input and returns tokens as a list."""
