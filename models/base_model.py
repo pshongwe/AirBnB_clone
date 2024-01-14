@@ -23,6 +23,8 @@ class BaseModel:
                 if key == 'created_at' or key == 'updated_at':
                     setattr(self, key, datetime.strptime(
                         value, '%Y-%m-%dT%H:%M:%S.%f'))
+                else:
+                    self.__dict__[key] = value
 
         else:
             # Generate a unique ID for the instance
