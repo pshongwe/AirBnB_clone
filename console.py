@@ -79,8 +79,7 @@ class HBNBCommand(cmd.Cmd):
         return [token.strip(',') for token in tokens if token]
 
     def do_count(self, arg):
-        """Usage: count <class> or <class>.count()
-        Retrieve the number of instances of a given class."""
+        """Retrieve the number of instances of a given class."""
         _arg = parse_arg(arg)
         cnt = 0
         for obj in storage.all().values():
