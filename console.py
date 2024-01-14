@@ -34,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
         checks = re.search(r"^(\w*)\.(\w+)(?:\(([^)]*)\))$", line)
         if checks:
             class_name, command, args = checks.groups()
-            attr_part = f"{command} {class_name} {instance_id} {attribute_part}"
+            attr_pt = f"{command} {class_name} {instance_id} {attribute_part}"
             if args is None:
                 line = f"{command} {class_name}"
             else:
@@ -42,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
                 if args_checks:
                     instance_id, attribute_part = args_checks.groups()
                     if attribute_part:
-                        line = attr_part
+                        line = attr_pt
                     else:
                         line = f"{command} {class_name} {instance_id}"
 
