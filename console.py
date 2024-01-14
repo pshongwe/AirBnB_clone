@@ -3,6 +3,7 @@
 import cmd
 import models
 import re
+import sys
 from models.base_model import BaseModel
 from models.user import User
 from models.place import Place
@@ -23,7 +24,31 @@ classes = {
 class HBNBCommand(cmd.Cmd):
     """ console class """
     prompt = '(hbnb) '
-    
+
+    def precmd(self, line):
+        # Check if the app is running non-interactively
+        if not sys.stdin.isatty():
+            print()
+            return line
+        attr_part = f"{command} {class_name} {instance_id} {attribute_part}"
+        # Use regex to parse the input line
+        checks = re.search(r"^(\w*)\.(\w+)(?:\(([^)]*)\))$", line)
+        if checks:
+            class_name, command, args = checks.groups()
+
+            if args is None:
+                line = f"{command} {class_name}"
+            else:
+                args_checks = re.search(r"^\"([^\"]*)\"(?:, (.*))?$", args)
+                if args_checks:
+                    instance_id, attribute_part = args_checks.groups()
+                    if attribute_part:
+                        line = attr_part
+                    else:
+                        line = f"{command} {class_name} {instance_id}"
+
+        return super().precmd(line)
+
     def default(self, arg):
         """Default behavior on invalid input"""
         argdict = {
