@@ -9,7 +9,9 @@ class BaseModel:
     """A Base class with all public instances"""
     def __init__(self, *args, **kwargs):
         """Initialization of the class"""
-
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.today()
+        self.updated_at = datetime.today()
         # Check if kwargs is not empty
         if kwargs:
             # Iterate through the key-value pairs in kwargs
