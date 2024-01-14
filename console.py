@@ -30,12 +30,11 @@ class HBNBCommand(cmd.Cmd):
         if not sys.stdin.isatty():
             print()
             return line
-        attr_part = f"{command} {class_name} {instance_id} {attribute_part}"
         # Use regex to parse the input line
         checks = re.search(r"^(\w*)\.(\w+)(?:\(([^)]*)\))$", line)
         if checks:
             class_name, command, args = checks.groups()
-
+            attr_part = f"{command} {class_name} {instance_id} {attribute_part}"
             if args is None:
                 line = f"{command} {class_name}"
             else:
