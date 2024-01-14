@@ -35,16 +35,16 @@ class HBNBCommand(cmd.Cmd):
         if checks:
             class_name, command, args = checks.groups()
             attr_pt = f"{command} {class_name} {instance_id} {attribute_part}"
+            args_checks = re.search(r"^\"([^\"]*)\"(?:, (.*))?$", args)
+            if args_checks:
+                instance_id, attribute_part = args_checks.groups()
             if args is None:
                 line = f"{command} {class_name}"
             else:
-                args_checks = re.search(r"^\"([^\"]*)\"(?:, (.*))?$", args)
-                if args_checks:
-                    instance_id, attribute_part = args_checks.groups()
-                    if attribute_part:
-                        line = attr_pt
-                    else:
-                        line = f"{command} {class_name} {instance_id}"
+                if attribute_part:
+                    line = attr_pt
+                else:
+                    line = f"{command} {class_name} {instance_id}"
 
         return super().precmd(line)
 
