@@ -31,8 +31,8 @@ class HBNBCommand(cmd.Cmd):
             print()
             return line
 
-         # Use regex to parse the input line
-         checks = re.search(r"^(\w*)\.(\w+)(?:\(([^)]*)\))$", line)
+        # Use regex to parse the input line
+        checks = re.search(r"^(\w*)\.(\w+)(?:\(([^)]*)\))$", line)
         if checks:
             class_name, command, args = checks.groups()
 
@@ -43,7 +43,12 @@ class HBNBCommand(cmd.Cmd):
                 if args_checks:
                     instance_id, attribute_part = args_checks.groups()
                     if attribute_part:
-                        line = f"{command} {class_name} {instance_id} {attribute_part}"
+                        line = (
+                            f"{command} "
+                            f"{class_name} "
+                            f"{instance_id} "
+                            f"{attribute_part}"
+                        )
                     else:
                         line = f"{command} {class_name} {instance_id}"
 
