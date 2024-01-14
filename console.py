@@ -2,6 +2,7 @@
 """command interpreter"""
 import cmd
 import models
+import re
 from models.base_model import BaseModel
 from models.user import User
 from models.place import Place
@@ -22,6 +23,21 @@ classes = {
 class HBNBCommand(cmd.Cmd):
     """ console class """
     prompt = '(hbnb) '
+
+    def parse_arg(arg):
+        """Handles user input and returns tokens as a list."""
+        tokens = re.split(r',|(\[.*?\])|(\{.*?\})', arg)
+        return [token.strip(',') for token in tokens if token]
+
+    def do_count(self, arg):
+        """Usage: count <class> or <class>.count()
+        Retrieve the number of instances of a given class."""
+        _arg = parse_arg(arg)
+        cnt = 0
+        for obj in storage.all().values():
+            if _arg[0] == obj.__class__.__name__:
+                cnt += 1
+        print(cnt)
 
     def do_update(self, args):
         """Update instance based on relevant args"""
