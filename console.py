@@ -30,22 +30,22 @@ class HBNBCommand(cmd.Cmd):
         if not sys.stdin.isatty():
             print()
             return line
-        # Use regex to parse the input line
-        checks = re.search(r"^(\w*)\.(\w+)(?:\(([^)]*)\))$", line)
+
+         # Use regex to parse the input line
+         checks = re.search(r"^(\w*)\.(\w+)(?:\(([^)]*)\))$", line)
         if checks:
             class_name, command, args = checks.groups()
-            args_checks = re.search(r"^\"([^\"]*)\"(?:, (.*))?$", args)
-            attr_pt = ""
-            if args_checks:
-                instance_id, attribute_part = args_checks.groups()
-                attr_pt = f"{command} {class_name} {instance_id} {attribute_part}"
+
             if args is None:
                 line = f"{command} {class_name}"
             else:
-                if attribute_part:
-                    line = attr_pt
-                else:
-                    line = f"{command} {class_name} {instance_id}"
+                args_checks = re.search(r"^\"([^\"]*)\"(?:, (.*))?$", args)
+                if args_checks:
+                    instance_id, attribute_part = args_checks.groups()
+                    if attribute_part:
+                        line = f"{command} {class_name} {instance_id} {attribute_part}"
+                    else:
+                        line = f"{command} {class_name} {instance_id}"
 
         return super().precmd(line)
 
