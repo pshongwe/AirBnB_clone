@@ -17,7 +17,7 @@ class TestConsole(unittest.TestCase):
         self.assertEqual("(hbnb) ", HBNBCommand.prompt)
 
     def test_emptyline(self):
-        with patch("sys.stdout", new_callable=StringIO) as mock_stdout:
+        with patch('sys.stdout', new=StringIO()) as mock_stdout:
             self.assertFalse(HBNBCommand().onecmd(""))
             self.assertEqual("", mock_stdout.getvalue().strip())
 
