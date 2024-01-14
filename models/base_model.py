@@ -40,8 +40,8 @@ class BaseModel:
 
     def to_dict(self):
         """Converts created_at and updated_at to str objects in ISO format"""
-        c_at_string = self.created_at.strftime('%Y-%m-%dT%H:%M:%S.%f')
-        u_at_string = self.updated_at.strftime('%Y-%m-%dT%H:%M:%S.%f')
+        c_at_string = self.created_at.isoformat()
+        u_at_string = self.updated_at.isoformat()
 
         my_dict = {
                 k: v for k, v in self.__dict__.items() if not k.startswith('_')
