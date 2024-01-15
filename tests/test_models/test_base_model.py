@@ -3,6 +3,7 @@
 import unittest
 import os
 import sys
+from datetime import datetime
 from time import sleep
 from models import storage
 from console import HBNBCommand
@@ -36,6 +37,20 @@ class TestBaseModel(unittest.TestCase):
         """Reset file storage data"""
         storage.delete()
         self.output.close()
+
+    def test_to_dict(self):
+        _dt = datetime.today()
+        b = BaseModel()
+        b.id = "0123456"
+        b.created_at = _dt
+        b.updated_at = _dt
+        to_dict = {
+            'id': '0123456',
+            '__class__': 'BaseModel',
+            'created_at': _dt.isoformat(),
+            'updated_at': _dt.isoformat()
+        }
+        self.assertDictEqual(b.to_dict(), to_dict)
 
     def test_uuid(self):
         """Test uniqueness of uuids"""
