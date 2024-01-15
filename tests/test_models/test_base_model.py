@@ -3,6 +3,7 @@
 import unittest
 import os
 import sys
+from time import sleep
 from models import storage
 from console import HBNBCommand
 from unittest.mock import patch
@@ -23,10 +24,13 @@ class TestBaseModel(unittest.TestCase):
         self.models_storage = storage.all()
         self.output = StringIO()
 
-    def save(self):
-        """Update nad save current datetime"""
-        self.updated_at = datetime.today()
-        models.storage.save()
+    def test_save(self):
+        """Test save"""
+        b = BaseModel()
+        sleep(0.07)
+        _updated_at = b.updated_at
+        b.save()
+        self.assertLess(_updated_at, b.updated_at)
 
     def tearDown(self):
         """Reset file storage data"""
