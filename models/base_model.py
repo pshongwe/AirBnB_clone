@@ -44,13 +44,14 @@ class BaseModel:
 
     def to_dict(self):
         """Converts created_at and updated_at to str objects in ISO format"""
+        time_fmt = '%Y-%m-%dT%H:%M:%S.%f'
         if isinstance(self.created_at, str):
-            self.created_at = datetime.strptime(self.created_at, '%Y-%m-%dT%H:%M:%S.%f')
+            self.created_at = datetime.strptime(self.created_at, time_fmt)
         if isinstance(self.updated_at, str):
-            self.updated_at = datetime.strptime(self.updated_at, '%Y-%m-%dT%H:%M:%S.%f')
+            self.updated_at = datetime.strptime(self.updated_at, time_fmt)
 
-        c_at_string = self.created_at.strftime('%Y-%m-%dT%H:%M:%S.%f')
-        u_at_string = self.updated_at.strftime('%Y-%m-%dT%H:%M:%S.%f')
+        c_at_string = self.created_at.strftime(time_fmt)
+        u_at_string = self.updated_at.strftime(time_fmt)
 
         my_dict = {
                 k: v for k, v in self.__dict__.items() if not k.startswith('_')

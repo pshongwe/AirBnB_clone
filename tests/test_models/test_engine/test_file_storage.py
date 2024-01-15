@@ -92,6 +92,7 @@ class TestFileStorage(unittest.TestCase):
         self.storage.reload()
         self.assertEqual(self.storage.all(), {})
 
+
 class TestFileStorageNoFile(unittest.TestCase):
 
     def setUp(self):
