@@ -75,7 +75,9 @@ class TestBaseModel(unittest.TestCase):
 
     def test_destroy_command(self):
         """Test destroy success"""
-        instance_id = "{}.{}".format(self.base.__class__.__name__, self.base.id)
+        bcn = self.base.__class__.__name__
+        bid = self.base.id
+        instance_id = "{bcn}.{bid}"
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             self.cmd.onecmd("destroy BaseModel {}".format(self.base.id))
             output = mock_stdout.getvalue().strip()
@@ -98,24 +100,30 @@ class TestBaseModel(unittest.TestCase):
 
     def test_update_command(self):
         """Test update"""
-        instance_id = "{}.{}".format(self.base.__class__.__name__, self.base.id)
+        bcn = self.base.__class__.__name__
+        bid = self.base.id
+        instance_id = "{bcn}.{bid}"
         attribute_name = "name"
         new_value = 'Updated'
 
         self.cmd.onecmd("create BaseModel")
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-            self.cmd.onecmd(f"update BaseModel {self.base.id} {attribute_name} '{new_value}'")
+            a = self.base.id
+            b = attribute_name
+            c = new_value
+            self.cmd.onecmd(f"update BaseModel {a} {b} '{c}'")
             output = mock_stdout.getvalue().strip()
 
         updated_instance = self.models_storage.get(instance_id)
         A = getattr(updated_instance, attribute_name).strip("'").lower()
         B = new_value.strip("'").lower()
         self.assertEqual(A, B)
-    
+
     def test_EOF(self):
         """Test EOF"""
         result = self.cmd.do_EOF(None)
         self.assertTrue(result)
+
 
 if __name__ == '__main__':
     unittest.main()

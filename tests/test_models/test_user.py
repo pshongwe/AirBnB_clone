@@ -41,10 +41,10 @@ class TestUser(unittest.TestCase):
         self.assertTrue(self.user.id)
         self.assertTrue(self.user.created_at)
         self.assertTrue(self.user.updated_at)
-    
+
     def test_str_representation(self):
         """Test the string representation of a User instance"""
-        expected_str = "[User] ({}) {}".format(self.user.id, self.user.__dict__)
+        expected_str = f"[User] ({self.user.id}) {self.user.__dict__}"
         self.assertEqual(str(self.user), expected_str)
 
     def test_email_attribute_type(self):

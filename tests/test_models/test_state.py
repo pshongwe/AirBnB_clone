@@ -33,7 +33,7 @@ class TestState(unittest.TestCase):
 
     def test_str_representation(self):
         """Test the string representation of a State instance"""
-        expected_str = "[State] ({}) {}".format(self.state.id, self.state.__dict__)
+        expected_str = f"[State] ({self.state.id}) {self.state.__dict__}"
         self.assertEqual(str(self.state), expected_str)
 
     def test_name_attribute_type(self):

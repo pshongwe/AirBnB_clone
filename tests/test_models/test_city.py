@@ -34,9 +34,9 @@ class TestCity(unittest.TestCase):
 
     def test_str_representation(self):
         """Test the string representation of a City instance"""
-        expected_str = "[City] ({}) {}".format(self.city.id, self.city.__dict__)
+        expected_str = f"[City] ({self.city.id}) {self.city.__dict__}"
         self.assertEqual(str(self.city), expected_str)
-    
+
     def test_state_id_attribute_type(self):
         """Test if the 'state_id' attribute is a string"""
         self.assertIsInstance(self.city.state_id, str)

@@ -8,6 +8,7 @@ from models import storage
 from models.place import Place
 from models.base_model import BaseModel
 
+
 class TestPlace(unittest.TestCase):
     """ place class unit tests class """
     def setUp(self):
@@ -42,9 +43,9 @@ class TestPlace(unittest.TestCase):
 
     def test_str_representation(self):
         """Test string representation"""
-        expected_str = "[Place] ({}) {}".format(self.place.id, self.place.__dict__)
+        expected_str = f"[Place] ({self.place.id}) {self.place.__dict__}"
         self.assertEqual(str(self.place), expected_str)
-    
+
     def test_city_id_attribute_type(self):
         """Test if the 'city_id' attribute is a string"""
         self.assertIsInstance(self.place.city_id, str)
@@ -92,4 +93,3 @@ class TestPlace(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-

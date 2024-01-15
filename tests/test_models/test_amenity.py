@@ -33,7 +33,7 @@ class TestAmenity(unittest.TestCase):
 
     def test_str_representation(self):
         """Test string representation"""
-        expected_str = "[Amenity] ({}) {}".format(self.amenity.id, self.amenity.__dict__)
+        expected_str = f"[Amenity] ({self.amenity.id}) {self.amenity.__dict__}"
         self.assertEqual(str(self.amenity), expected_str)
 
     def test_name_attribute_type(self):
@@ -59,4 +59,3 @@ class TestAmenity(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-

@@ -35,9 +35,9 @@ class TestReview(unittest.TestCase):
 
     def test_str_representation(self):
         """Test the string representation of a Review instance"""
-        expected_str = "[Review] ({}) {}".format(self.review.id, self.review.__dict__)
+        expected_str = f"[Review] ({self.review.id}) {self.review.__dict__}"
         self.assertEqual(str(self.review), expected_str)
-    
+
     def test_place_id_attribute_type(self):
         """Test if the 'place_id' attribute is a string"""
         self.assertIsInstance(self.review.place_id, str)
