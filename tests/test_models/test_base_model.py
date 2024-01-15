@@ -23,6 +23,11 @@ class TestBaseModel(unittest.TestCase):
         self.models_storage = storage.all()
         self.output = StringIO()
 
+    def save(self):
+        """Update nad save current datetime"""
+        self.updated_at = datetime.today()
+        models.storage.save()
+
     def tearDown(self):
         """Reset file storage data"""
         storage.delete()
