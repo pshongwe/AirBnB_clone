@@ -38,7 +38,7 @@ class TestBaseModel(unittest.TestCase):
         storage.delete()
         self.output.close()
 
-    def test_str_representation(self):
+    def test__str_representation(self):
         """Test the __str__ method for BaseModel."""
         # Create a sample instance of BaseModel
         instance = BaseModel()
