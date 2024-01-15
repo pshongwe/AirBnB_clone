@@ -54,8 +54,8 @@ class BaseModel:
         u_at_string = self.updated_at.strftime(time_fmt)
 
         my_dict = {
-                k: v for k, v in self.__dict__.items() if not k.startswith('_')
-                }
+            k: v for k, v in self.__dict__.items() if not k.startswith('_')
+        }
 
         my_dict['created_at'] = c_at_string
         my_dict['updated_at'] = u_at_string
