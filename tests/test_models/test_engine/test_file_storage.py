@@ -92,6 +92,41 @@ class TestFileStorage(unittest.TestCase):
         self.storage.reload()
         self.assertEqual(self.storage.all(), {})
 
+class TestFileStorageNoFile(unittest.TestCase):
+
+    def setUp(self):
+        self.storage = FileStorage()
+
+    def tearDown(self):
+        if os.path.exists("file.json"):
+            os.remove("file.json")
+
+    def test_file_path_when_no_file(self):
+        """Test __file_path attribute when there's no file"""
+        self.assertEqual(self.storage._FileStorage__file_path, "file.json")
+
+    def test_objects_when_no_file(self):
+        """Test __objects attribute when there's no file"""
+        self.assertEqual(self.storage._FileStorage__objects, {})
+
+    def test_all_when_no_file(self):
+        """Test all() method when there's no file"""
+        objects = self.storage.all()
+        self.assertEqual(objects, {})
+
+    def test_new_when_no_file(self):
+        """Test new() method when there's no file"""
+        obj = BaseModel()
+        self.storage.new(obj)
+        objects = self.storage.all()
+        key = "{}.{}".format(obj.__class__.__name__, obj.id)
+        self.assertIn(key, objects)
+
+    def test_save_when_no_file(self):
+        """Test save() method when there's no file"""
+        self.storage.save()
+        self.assertTrue(os.path.exists("file.json"))
+
 
 if __name__ == '__main__':
     unittest.main()
