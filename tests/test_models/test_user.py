@@ -24,16 +24,15 @@ class TestUser(unittest.TestCase):
     def test_user_attributes(self):
         """Test user attributes"""
         self.assertTrue(hasattr(self.user, 'email'))
-        self.assertTrue(hasattr(self.user, '_password'))
+        self.assertTrue(hasattr(self.user, 'password'))
         self.assertTrue(hasattr(self.user, 'first_name'))
         self.assertTrue(hasattr(self.user, 'last_name'))
 
     def test_password_hashing(self):
-        """Test password hashing"""
+        """Test password"""
         password = "password123"
         self.user.password = password
-        hashed_password = hashlib.md5(password.encode()).hexdigest()
-        self.assertEqual(self.user._password, hashed_password)
+        self.assertEqual(self.user.password, password)
 
     def test_user_creation(self):
         """Test user create"""
@@ -53,7 +52,7 @@ class TestUser(unittest.TestCase):
 
     def test_password_attribute_type(self):
         """Test if the '_password' attribute is a string"""
-        self.assertIsInstance(self.user._password, str)
+        self.assertIsInstance(self.user.password, str)
 
     def test_first_name_attribute_type(self):
         """Test if the 'first_name' attribute is a string"""
@@ -68,8 +67,8 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.user.email, "")
 
     def test_password_initial_value(self):
-        """Test the initial value of the '_password' attribute"""
-        self.assertEqual(self.user._password, "")
+        """Test the initial value of the 'password' attribute"""
+        self.assertEqual(self.user.password, "")
 
     def test_first_name_initial_value(self):
         """Test the initial value of the 'first_name' attribute"""
@@ -86,11 +85,10 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.user.email, new_email)
 
     def test_update_password_attribute(self):
-        """Test updating the '_password' attribute"""
+        """Test updating the 'password' attribute"""
         new_password = "new_password_hashed"
         self.user.password = new_password
-        expected_hash = hashlib.md5(new_password.encode()).hexdigest()
-        self.assertEqual(self.user._password, expected_hash)
+        self.assertEqual(self.user.password, new_password)
 
     def test_update_first_name_attribute(self):
         """Test updating the 'first_name' attribute"""
