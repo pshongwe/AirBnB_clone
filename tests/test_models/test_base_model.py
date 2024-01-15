@@ -38,7 +38,7 @@ class TestBaseModel(unittest.TestCase):
         storage.delete()
         self.output.close()
 
-    def test__str_representation(self):
+    def test__str__representation(self):
         """Test the __str__ method for BaseModel."""
         # Create a sample instance of BaseModel
         instance = BaseModel()
@@ -48,7 +48,7 @@ class TestBaseModel(unittest.TestCase):
         instance.name = "Sample Object"
 
         expected_str = "[BaseModel] (012345) {\n"\
-                       "  'id': '12345',\n"\
+                       "  'id': '012345',\n"\
                        "  'created_at': '2022-01-01T00:00:00.000000',\n"\
                        "  'updated_at': '2022-01-02T00:00:00.000000',\n"\
                        "  'name': 'Sample Object'\n"\
