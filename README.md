@@ -1,6 +1,6 @@
 # Airbnb Console Project
 
-![Project Logo/Icon]
+![Project Logo/Icon](https://cdn.freebiesupply.com/logos/large/2x/airbnb-2-logo-svg-vector.svg)
 
 ## Overview
 
