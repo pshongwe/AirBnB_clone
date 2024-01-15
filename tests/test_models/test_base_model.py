@@ -40,23 +40,9 @@ class TestBaseModel(unittest.TestCase):
 
     def test__str__representation(self):
         """Test the __str__ method for BaseModel."""
-        # Create a sample instance of BaseModel
-        instance = BaseModel()
-        instance.id = "012345"
-        instance.created_at = "2022-01-01T00:00:00.000000"
-        instance.updated_at = "2022-01-02T00:00:00.000000"
-        instance.name = "Sample Object"
-
-        expected_str = "[BaseModel] (012345) {\n"\
-                       "  'id': '012345',\n"\
-                       "  'created_at': '2022-01-01T00:00:00.000000',\n"\
-                       "  'updated_at': '2022-01-02T00:00:00.000000',\n"\
-                       "  'name': 'Sample Object'\n"\
-                       "}"
-        try:
-            self.assertEqual(str(instance), expected_str)
-        except AssertionError:
-            return
+        b = BaseModel()
+        val = "[BaseModel] ({}) {}".format(b.id, b.__dict__)
+        self.assertEqual(val, str(b))
 
     def test_to_dict(self):
         _dt = datetime.today()
