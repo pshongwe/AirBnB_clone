@@ -44,6 +44,11 @@ class BaseModel:
 
     def to_dict(self):
         """Converts created_at and updated_at to str objects in ISO format"""
+        if isinstance(self.created_at, str):
+            self.created_at = datetime.strptime(self.created_at, '%Y-%m-%dT%H:%M:%S.%f')
+        if isinstance(self.updated_at, str):
+            self.updated_at = datetime.strptime(self.updated_at, '%Y-%m-%dT%H:%M:%S.%f')
+
         c_at_string = self.created_at.strftime('%Y-%m-%dT%H:%M:%S.%f')
         u_at_string = self.updated_at.strftime('%Y-%m-%dT%H:%M:%S.%f')
 
