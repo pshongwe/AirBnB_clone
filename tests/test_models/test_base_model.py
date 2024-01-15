@@ -38,6 +38,23 @@ class TestBaseModel(unittest.TestCase):
         storage.delete()
         self.output.close()
 
+    def test_str_representation(self):
+        """Test the __str__ method for BaseModel."""
+        # Create a sample instance of BaseModel
+        instance = BaseModel()
+        instance.id = "012345"
+        instance.created_at = "2022-01-01T00:00:00.000000"
+        instance.updated_at = "2022-01-02T00:00:00.000000"
+        instance.name = "Sample Object"
+
+        expected_str = "[BaseModel] (012345) {\n"\
+                       "  'id': '12345',\n"\
+                       "  'created_at': '2022-01-01T00:00:00.000000',\n"\
+                       "  'updated_at': '2022-01-02T00:00:00.000000',\n"\
+                       "  'name': 'Sample Object'\n"\
+                       "}"
+        self.assertEqual(str(instance), expected_str)
+
     def test_to_dict(self):
         _dt = datetime.today()
         b = BaseModel()
