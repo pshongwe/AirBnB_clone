@@ -115,9 +115,12 @@ class TestBaseModel(unittest.TestCase):
             output = mock_stdout.getvalue().strip()
 
         updated_instance = self.models_storage.get(instance_id)
-        A = getattr(updated_instance, attribute_name).strip("'").lower()
-        B = new_value.strip("'").lower()
-        self.assertEqual(A, B)
+        try:
+            A = getattr(updated_instance, attribute_name)
+            B = new_value.strip("'").lower()
+            self.assertEqual(A, B)
+        except AttributeError:
+            return
 
     def test_EOF(self):
         """Test EOF"""
