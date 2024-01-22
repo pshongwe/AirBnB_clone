@@ -1,0 +1,59 @@
+/* Styles for the filters section */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    /* Other styles remain the same */
+}
+
+/* Locations and Amenities common styles */
+.locations, .amenities {
+    position: relative;
+    width: 25%;
+    /* Other styles remain the same */
+}
+
+.popover {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #FAFAFA;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    width: 100%;
+    z-index: 1000;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.locations:hover .popover,
+.amenities:hover .popover {
+    display: block;
+}
+
+/* Styles for nested lists in Locations */
+.locations ul ul {
+    padding-left: 20px;
+}
+
+.locations h2 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Styles for list items */
+.popover li {
+    padding: 5px 10px;
+}
+
+/* Styles for sublist items to differentiate */
+.popover ul li {
+    font-weight: normal;
+    font-size: 14px;
+}
+
+/* Borders for the first filter only */
+.locations .popover {
+    border-right: 1px solid #DDDDDD;
+}
