@@ -74,6 +74,10 @@ button {
     font-size: 14px;
 }
 
+ul {
+    list-style: none;
+  }
+
 /* Borders for the first filter only */
 .locations .popover {
     border-right: 1px solid #DDDDDD;
